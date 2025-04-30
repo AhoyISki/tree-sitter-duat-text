@@ -1,0 +1,211 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
+  "name": "duat_text",
+  "rules": {
+    "source_file": {
+      "type": "REPEAT",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_str_literal"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "expr_argument"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "form_argument"
+          }
+        ]
+      }
+    },
+    "_str_literal": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "raw_sequence"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "quote_escape"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ascii_escape"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "unicode_escape"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "string_continue"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "argument_delimiter_escape"
+        }
+      ]
+    },
+    "raw_sequence": {
+      "type": "PATTERN",
+      "value": "[^\\\\\\{\\}\\[\\]]+"
+    },
+    "quote_escape": {
+      "type": "PATTERN",
+      "value": " (\\\\\"|\\\\')"
+    },
+    "ascii_escape": {
+      "type": "PATTERN",
+      "value": "\\\\(0 | t | n | r | \"|'|\\\\|x[0-7][0-9a-fA-F])"
+    },
+    "unicode_escape": {
+      "type": "PATTERN",
+      "value": "\\\\u\\{[0-9a-fA-F_]{1,6}\\}"
+    },
+    "string_continue": {
+      "type": "PATTERN",
+      "value": "\\\\\\n[\\t\\n\\r ]*"
+    },
+    "argument_delimiter_escape": {
+      "type": "PATTERN",
+      "value": "\\{\\{|\\}\\}|\\[\\[|\\]\\]"
+    },
+    "expr_argument": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "identifiers"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": ":"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "modifier"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "form_argument": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "identifiers"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": ":"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "modifier"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        }
+      ]
+    },
+    "identifiers": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "."
+              },
+              {
+                "type": "SYMBOL",
+                "name": "identifier"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "identifier": {
+      "type": "PATTERN",
+      "value": "[a-zA-Z_][0-9a-zA-Z_]*"
+    },
+    "modifier": {
+      "type": "PATTERN",
+      "value": "[^\\{\\}\\[\\]]*"
+    }
+  },
+  "extras": [],
+  "conflicts": [],
+  "precedences": [],
+  "externals": [],
+  "inline": [],
+  "supertypes": [],
+  "reserved": {}
+}

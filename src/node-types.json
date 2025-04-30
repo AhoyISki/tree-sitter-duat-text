@@ -1,0 +1,155 @@
+[
+  {
+    "type": "expr_argument",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "identifiers",
+          "named": true
+        },
+        {
+          "type": "modifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "form_argument",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "identifiers",
+          "named": true
+        },
+        {
+          "type": "modifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "identifiers",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "root": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "argument_delimiter_escape",
+          "named": true
+        },
+        {
+          "type": "ascii_escape",
+          "named": true
+        },
+        {
+          "type": "expr_argument",
+          "named": true
+        },
+        {
+          "type": "form_argument",
+          "named": true
+        },
+        {
+          "type": "quote_escape",
+          "named": true
+        },
+        {
+          "type": "raw_sequence",
+          "named": true
+        },
+        {
+          "type": "string_continue",
+          "named": true
+        },
+        {
+          "type": "unicode_escape",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": ".",
+    "named": false
+  },
+  {
+    "type": ":",
+    "named": false
+  },
+  {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "]",
+    "named": false
+  },
+  {
+    "type": "argument_delimiter_escape",
+    "named": true
+  },
+  {
+    "type": "ascii_escape",
+    "named": true
+  },
+  {
+    "type": "identifier",
+    "named": true
+  },
+  {
+    "type": "modifier",
+    "named": true
+  },
+  {
+    "type": "quote_escape",
+    "named": true
+  },
+  {
+    "type": "raw_sequence",
+    "named": true
+  },
+  {
+    "type": "string_continue",
+    "named": true
+  },
+  {
+    "type": "unicode_escape",
+    "named": true
+  },
+  {
+    "type": "{",
+    "named": false
+  },
+  {
+    "type": "}",
+    "named": false
+  }
+]
